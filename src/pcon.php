@@ -164,12 +164,12 @@ class PCon extends Console_Abstract
      * @api
      */
     public function create(
-        string $tool_name = null,
-        string $author_handle = null,
-        string $tool_description = null,
-        string $update_url = null,
-        string $tool_folder = null,
-        string $_parent_path = null,
+        ?string $tool_name = null,
+        ?string $author_handle = null,
+        ?string $tool_description = null,
+        ?string $update_url = null,
+        ?string $tool_folder = null,
+        ?string $_parent_path = null,
         bool $create_parent = false
     ) {
         $this->output('Creating New PHP Console Tool');
@@ -333,7 +333,7 @@ class PCon extends Console_Abstract
      * @return void
      * @api
      */
-    public function package(string $_tool_path = null)
+    public function package(?string $_tool_path = null)
     {
         $this->output('Packaging PHP Console Tool');
 

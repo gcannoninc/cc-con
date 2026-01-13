@@ -9,7 +9,7 @@
  * @author    erusev
  * @copyright Emanuil Rusev
  * @license   MIT
- * @version   1.8.0-beta-7
+ * @version   1.8.0
  */
 
 // Note: leave the end tag for packaging

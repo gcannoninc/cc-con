@@ -1051,7 +1051,7 @@ if (! class_exists("Console_Abstract")) {
          * @return void
          * @api
          */
-        public function install(string $install_path = null)
+        public function install(?string $install_path = null)
         {
             if (! defined('PACKAGED') or ! PACKAGED) {
                 $this->error('Only packaged tools may be installed - package first using PCon (https://cmp.onl/tjNJ)');
@@ -1227,7 +1227,7 @@ if (! class_exists("Console_Abstract")) {
          * @return mixed The version string if output is false, otherwise false.
          * @api
          */
-        public function version(bool $output = true)
+        public function version(?bool $output = true)
         {
             $class          = get_called_class();
             $version_string = $class::SHORTNAME . ' version ' . $class::VERSION;
@@ -1252,7 +1252,7 @@ if (! class_exists("Console_Abstract")) {
          *  - if auto, but not yet time to check or
          *  - if update is disabled
          */
-        protected function updateCheck(bool $auto = true, bool $output = false): bool
+        protected function updateCheck(?bool $auto = true, ?bool $output = false): bool
         {
             $this->log("Running update check");
 
@@ -1403,7 +1403,7 @@ if (! class_exists("Console_Abstract")) {
          *
          * @return string Output resulting from the command run.
          */
-        public function exec(string $command, bool $error = false): string
+        public function exec(?string $command, ?bool $error = false): string
         {
             $this->log("exec: $command");
             exec($command, $output, $return);
@@ -1433,7 +1433,7 @@ if (! class_exists("Console_Abstract")) {
          *
          * @return void
          */
-        public function error($data, $code = 500, bool $prompt_to_continue = false)
+        public function error($data, $code = 500, ?bool $prompt_to_continue = false)
         {
             $this->br();
             $this->hr('!');
@@ -1460,7 +1460,7 @@ if (! class_exists("Console_Abstract")) {
          *
          * @return void
          */
-        public function warn($data, bool $prompt_to_continue = false)
+        public function warn($data, ?bool $prompt_to_continue = false)
         {
             $this->br();
             $this->hr('*');
@@ -1502,7 +1502,7 @@ if (! class_exists("Console_Abstract")) {
          *
          * @return void
          */
-        public function output($data, bool $line_ending = true, bool $stamp_lines = null)
+        public function output($data, ?bool $line_ending = true, ?bool $stamp_lines = null)
         {
             $data = $this->stringify($data);
 
@@ -1526,7 +1526,7 @@ if (! class_exists("Console_Abstract")) {
          *
          * @return void
          */
-        public function outputProgress(int $count, int $total, string $description = "remaining")
+        public function outputProgress(?int $count, ?int $total, ?string $description = "remaining")
         {
             if (! $this->verbose && $total > 0) {
                 if ($count > 0) {
@@ -1639,7 +1639,7 @@ if (! class_exists("Console_Abstract")) {
          *
          * @return void
          */
-        public function output3col(string $col1, string $col2 = null, string $col3 = null)
+        public function output3col(?string $col1, ?string $col2 = null, ?string $col3 = null)
         {
             $full_width = $this->getTerminalWidth();
             $col1_width = floor(($full_width * static::COL1_WIDTH) / 100);
@@ -2143,7 +2143,7 @@ if (! class_exists("Console_Abstract")) {
          *
          * @return string The edited contents of the file.
          */
-        public function edit(string $text = "", string $filename = null, bool $modify = false): string
+        public function edit(?string $text = "", ?string $filename = null, ?bool $modify = false): string
         {
             if (is_null($filename)) {
                 $filename = "edit_" . date("YmdHis") . ".txt";
@@ -2168,7 +2168,7 @@ if (! class_exists("Console_Abstract")) {
          *
          * @return string The text input from the user.
          */
-        public function input($message = false, string $default = null, $required = false, $single = false, $single_hide = false, $trim = true): string
+        public function input($message = false, ?string $default = null, $required = false, $single = false, $single_hide = false, $trim = true): string
         {
             if ($message) {
                 if ($message === true) {
@@ -2519,7 +2519,7 @@ if (! class_exists("Console_Abstract")) {
          *
          * @return mixed The prepared result.
          */
-        public function prepArg($value, $default, string $force_type = null, bool $trim = true)
+        public function prepArg($value, $default, ?string $force_type = null, ?bool $trim = true)
         {
             $a = func_num_args();
             if ($a < 2) {
@@ -2744,7 +2744,7 @@ if (! class_exists("Console_Abstract")) {
          *
          * @return mixed The contents of the cache file, or false if file expired, does not exist, or can't be read.
          */
-        public function getCacheContents($subpath, int $expiration = null)
+        public function getCacheContents($subpath, ?int $expiration = null)
         {
             $expiration = $expiration ?? $this->cache_lifetime;
 

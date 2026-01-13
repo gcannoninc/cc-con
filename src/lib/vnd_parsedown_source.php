@@ -9,7 +9,7 @@
  * @author    erusev
  * @copyright Emanuil Rusev
  * @license   MIT
- * @version   1.8.0-beta-7
+ * @version   1.8.0
  *
  * @ignore Since this is a third-party library with documentation of its own
  * phpcs:disable
@@ -28,7 +28,11 @@
 #
 #
 
+$old_error_level = error_reporting();
+error_reporting($old_error_level & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+
 if (!class_exists("Parsedown")) {
+
     class Parsedown
     {
         # ~
@@ -2008,7 +2012,10 @@ if (!class_exists("Parsedown")) {
                     'wbr', 'time',
         );
     }
-}
+
+
+}// endif
+error_reporting($old_error_level);
 
 // Note: leave the end tag for packaging
 ?>
