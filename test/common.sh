@@ -69,7 +69,7 @@ function current_php_version {
 }
 
 # Variables used by script which includes this file
-PCON="$DIR/../pcon"
+CC_CON="$DIR/../cc-con"
 TMP_DIR="$DIR/tmp"
 TEST_DIR="$TMP_DIR/_test"
 

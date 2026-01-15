@@ -57,10 +57,10 @@ class ___CLASS_NAME___ extends Console_Abstract
     /**
      * The URL to check for updates
      *
-     *  - PCon will check the README file - typical setup
+     *  - CC_Con will check the README file - typical setup
      *
      * @var string
-     * @see PCon::update_version_url
+     * @see CC_Con::update_version_url
      * @api
      */
     public $update_version_url = "___UPDATE_URL___";

@@ -31,7 +31,7 @@ if [ -d "$TEST_DIR/dist" ]; then
 fi
 
 echo "Packaging test tool"
-"$PCON" package "$TEST_SCRIPT" --verbose
+"$CC_CON" package "$TEST_SCRIPT" --verbose
 
 echopackagenote
 

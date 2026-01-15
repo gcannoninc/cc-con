@@ -8,7 +8,7 @@ source "$DIR/test/common.sh"
 
 switch_php latest
 
-cp -f pcon pcon-load.php
+cp -f cc-con cc-con-load.php
 
 rm -rf docs
 
@@ -21,4 +21,4 @@ elif [ "$1" == "-o" ]; then
     google-chrome "http://localhost:8000"
 fi
 
-rm pcon-load.php
+rm cc-con-load.php

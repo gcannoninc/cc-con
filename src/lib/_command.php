@@ -2,8 +2,8 @@
 /**
  * Defines Command class
  *
- * @package pcon
- * @author  chrisputnam9
+ * @package cc_con
+ * @author  BADATAI
  */
 
 if (!class_exists("Command")) {

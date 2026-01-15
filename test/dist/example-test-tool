@@ -7831,13 +7831,13 @@ if (! empty($src_includes) and is_array($src_includes)) {
  * Example_Test_Tool Class File
  *
  * @package example-test-tool
- * @author  chrisputnam9
+ * @author  BADATAI
  */
 
 /**
  * Example Test Tool
  *
- * A simple example tool, used to test PCon tooling.
+ * A simple example tool, used to test CC-Con tooling.
  */
 class Example_Test_Tool extends Console_Abstract
 {
@@ -7885,13 +7885,13 @@ class Example_Test_Tool extends Console_Abstract
     /**
      * The URL to check for updates
      *
-     *  - PCon will check the README file - typical setup
+     *  - CC_Con will check the README file - typical setup
      *
      * @var string
-     * @see PCon::update_version_url
+     * @see CC_Con::update_version_url
      * @api
      */
-    public $update_version_url = "https://raw.githubusercontent.com/chrisputnam9/pcon/master/test/dist/test-readme.md";
+    public $update_version_url = "https://raw.githubusercontent.com/gcannoninc/cc-con/master/test/dist/test-readme.md";
 
     /**
      * Help info for test method

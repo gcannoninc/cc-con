@@ -21,11 +21,11 @@ if [ -d "$TEST_DIR" ]; then
 fi
 
 pced "Creating new tool"
-"$PCON" create \
+"$CC_CON" create \
     "Example Test Tool" \
-    "chrisputnam9" \
-    "A simple example tool, used to test PCon tooling." \
-    "https://raw.githubusercontent.com/chrisputnam9/pcon/master/test/dist/test-readme.md" \
+    "BADATAI" \
+    "A simple example tool, used to test CC-Con tooling." \
+    "https://raw.githubusercontent.com/gcannoninc/cc-con/master/test/dist/test-readme.md" \
     "_test" \
     "$TMP_DIR" \
     "true"
