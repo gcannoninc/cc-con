@@ -5,8 +5,8 @@
  *  - Defines global configuration & constants
  *  - Defines the Console_Abstract class
  *
- * @package pcon
- * @author  chrisputnam9
+ * @package cc_con
+ * @author  BADATAI
  */
 
 // Global Constants

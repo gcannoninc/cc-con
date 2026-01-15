@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PCon Standards" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="CC-Con Standards" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
 
-	<description>PCon Standards - based on PSR-12, with modifications for packaging and to avoid wide scale refactoring</description>
+	<description>CC-Con Standards - based on PSR-12, with modifications for packaging and to avoid wide scale refactoring</description>
 
     <file>.</file>
 

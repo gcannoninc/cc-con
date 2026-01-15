@@ -1,19 +1,19 @@
 <?php
 /**
- * PCon Class File
+ * CC_Con Class File
  *
- * @package pcon
- * @author  chrisputnam9
+ * @package cc_con
+ * @author  BADATAI
  */
 
 /**
- * PHP Console management tool
+ * Central Command Console management tool
  *
  * - Defines a CLI helper tool to create and package your own PHP Console tools
- * - NOTE: PCon *itself* will not function as a packaged tool, though it may be
+ * - NOTE: CC_Con *itself* will not function as a packaged tool, though it may be
  *    possible to package it. It relies on being run in unpackaged form.
  */
-class PCon extends Console_Abstract
+class CC_Con extends Console_Abstract
 {
     /**
      * Current tool version
@@ -27,7 +27,14 @@ class PCon extends Console_Abstract
      *
      * @var string
      */
-    public const SHORTNAME = 'pcon';
+    public const SHORTNAME = 'cc-con';
+
+    /**
+     * Central Command config subdirectory name.
+     *
+     * @var string
+     */
+    public const CONFIG_SUBDIR = 'con';
 
     /**
      * Callable Methods / Sub-commands
@@ -92,7 +99,7 @@ class PCon extends Console_Abstract
     /**
      * Whether to check the hash when downloading updates
      *
-     *  - Overriding to false for PCon - no downloading built in
+     *  - Overriding to false for CC_Con - no downloading built in
      *
      * @var boolean
      * @api
@@ -102,23 +109,23 @@ class PCon extends Console_Abstract
     /**
      * The URL to check for updates
      *
-     *  - PCon will check the README file - typical setup
+     *  - CC_Con will check the README file - typical setup
      *
      * @var string
-     * @see PCon::update_version_url
+     * @see CC_Con::update_version_url
      * @api
      */
-    public $update_version_url = "https://raw.githubusercontent.com/chrisputnam9/pcon/master/README.md";
+    public $update_version_url = "https://raw.githubusercontent.com/gcannoninc/cc-con/master/README.md";
 
     /**
      * Update behavior - either "DOWNLOAD" or custom text
      *
-     *  - For PCon - standard updates don't make much sense, so instead we show a message
+     *  - For CC_Con - standard updates don't make much sense, so instead we show a message
      *    instructing the user to update the git repository if updates are available
      *
      * @var string
      */
-    protected $update_behavior = 'Pull git repository to update PHP Console tool (PCon) to latest version';
+    protected $update_behavior = 'Pull git repository to update Central Command Console tool (CC_Con) to latest version';
 
     /**
      * Help info for create method
@@ -131,7 +138,7 @@ class PCon extends Console_Abstract
         "Create a new PHP console tool - interactive, or specify options",
         ["Name of tool", "string"],
         ["Name of folder to create - defaults to name of tool if specified", "string"],
-        ["Path in which to create folder - defaults to parent of pcon folder", "string"],
+        ["Path in which to create folder - defaults to parent of cc-con folder", "string"],
         ["Whether to create parent path", "binary"],
     ];
 
@@ -156,7 +163,7 @@ class PCon extends Console_Abstract
      *                                  Defaults to the slug version of $tool_name.
      * @param string  $_parent_path     Path in which to set up the tool folder.
      *                                  Will prompt if not passed.
-     *                                  Defaults to the parent folder of the PCon tool.
+     *                                  Defaults to the parent folder of the CC_Con tool.
      * @param boolean $create_parent    Whether to create the parent path if it doesn't exist.
      *                                  Defaults to false.
      *
@@ -257,9 +264,9 @@ class PCon extends Console_Abstract
         $this->log('Creating tool path - ' . $tool_path);
         mkdir($tool_path, 0755, true);
 
-        $this->log('Symlinking PCon folder from configured path');
-        $pcon_dir        = realpath(__DIR__ . DS . "..");
-        $symlink_command = 'ln -s "' . $pcon_dir . '" "' . $tool_path . DS . '"';
+        $this->log('Symlinking CC_Con folder from configured path');
+        $cc_con_dir      = realpath(__DIR__ . DS . "..");
+        $symlink_command = 'ln -s "' . $cc_con_dir . '" "' . $tool_path . DS . '"';
         $this->exec($symlink_command);
 
         $this->log('Copying over template files');
@@ -270,9 +277,9 @@ class PCon extends Console_Abstract
         $tool_gitignore = $tool_path . DS . '.gitignore';
         copy($package_dir . '.gitignore', $tool_gitignore);
 
-        // Copy primary executable sample - pcon
+        // Copy primary executable sample - cc-con
         $tool_exec_path = $tool_path . DS . $tool_shortname;
-        copy(__DIR__ . DS . '..' . DS . 'pcon', $tool_exec_path);
+        copy(__DIR__ . DS . '..' . DS . 'cc-con', $tool_exec_path);
         chmod($tool_exec_path, 0755);
 
         // Create src directory
@@ -291,7 +298,7 @@ class PCon extends Console_Abstract
         $class_name = str_replace(' ', '_', $class_name);
 
         $template_vars = [
-            'pcon.php' => $tool_shortname . '.php',
+            'cc_con.php' => $tool_shortname . '.php',
             '___AUTHOR_HANDLE___' => $author_handle,
             '___CLASS_NAME___' => $class_name,
             '___TOOL_NAME___' => $tool_name,
@@ -472,11 +479,28 @@ class PCon extends Console_Abstract
 
         $this->pause();
     }//end test_colors()
+
+    /**
+     * Get the config directory path
+     *
+     * Overrides parent to use Central Command directory structure:
+     * ~/.central-command/con/
+     *
+     * @return string Full path to config directory.
+     */
+    public function getConfigDir(): string
+    {
+        if (is_null($this->config_dir)) {
+            $this->config_dir = $this->getHomeDir() . DS . '.central-command' . DS . static::CONFIG_SUBDIR;
+        }
+
+        return $this->config_dir;
+    }//end getConfigDir()
 }//end class
 
 if (empty($__no_direct_run__)) {
     // Kick it all off
-    PCon::run($argv);
+    CC_Con::run($argv);
 }
 
 // Note: leave the end tag for packaging

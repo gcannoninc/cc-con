@@ -1,67 +1,79 @@
-# Overview
-PCon - PHP Console - is a console tool and abstract that you can use to help build your own PHP
-console tools.
+# CC-Con - Central Command Console
 
-Download Latest Version (1.7.1):
-https://github.com/chrisputnam9/pcon
+CC-Con is a PHP console framework for building CLI tools. Part of the Central Command toolkit.
 
-## Why Create Console Tools in PHP?
-Great question.  Some people would say "Don't" - and depending on your situation, I might tell you
-the same.  Here are some of the reasons I do reach for PHP:
+**Version:** 1.7.1
 
- - It's the language I currently work with the most (so I can write quickly in it)
- - It's the language most of my teammates work with the most (so they can contribute easily)
- - It allows me to practice and build many re-usable techniques and methods in PHP for re-use in
-   other projects
- - I and my team generally have it installed on our workstations already
- - Most systems I work with use the LAMP stack, so they typically have PHP available in the shell by
-   default
- - It's good enough for most of my use-cases.  If I need a compiling, fast,
-   multi-platform, multi-threading language to build for wider distribution, I'll probably use
-   [Go](http://golang.org).
+**Download:** https://github.com/gcannoninc/cc-con
 
-# Development Cookbook
-[See Wiki](https://github.com/chrisputnam9/pcon/wiki) for information on building custom PCon tools.
+## Why PHP for Console Tools?
 
-# Tools Built With PCon
- - [PACLI - Asana CLI](https://github.com/chrisputnam9/pacli)
- - [PCUCLI - ClickUp CLI](https://github.com/chrisputnam9/pcucli)
- - [PGH - Github CLI](https://github.com/chrisputnam9/pgh)
- - [PSSH - Shared SSH Config](https://github.com/chrisputnam9/pssh)
- - [PTFX - Internal TFX CLI Utility](https://www.webfx.com/)
- - [Quicknote - Personal note/todo helper tool](https://github.com/chrisputnam9/quicknote)
+PHP works well for console tools when:
 
-# Inactive Tools (not maintained)
- - [PBCC - Basecamp Classic CLI](https://github.com/chrisputnam9/pbcc)
- - [PXBRO - XML Browser Tool](https://github.com/chrisputnam9/pxbro) - using a very early version of PCon, hasn't been updated
+- You already work with PHP regularly
+- Your team uses PHP
+- You want reusable code across web and CLI projects
+- PHP is already installed on your systems
+- Your use case doesn't require compilation or multi-threading
 
-# Troubleshooting & Common Issues
+For more demanding requirements, consider Go or Rust.
 
-## Permission Error - Failed to write to config file
-Review the permissions on the config file (path should be included in error message)
+## Getting Started
 
-In certain cases, the config file is created and owned by the root user during installation.
+Clone the repository and run the executable:
 
-The file must be owned, readable and writable by your user.
+```bash
+git clone git@github.com:gcannoninc/cc-con.git
+cd cc-con
+./cc-con help
+```
 
-Example, in Unix-type environment:
+## Creating a New Tool
 
-    sudo chown myuser:myuser ~/.config_folder/config.hjson
-    sudo chmod 644 ~/.config_folder/config.hjson
+```bash
+./cc-con create
+```
 
-## Windows - SSL Errors
-Try downloading the latest CA bundle and pointing your PHP.ini to that (https://curl.haxx.se/docs/caextract.html)
+Follow the prompts to scaffold a new tool.
 
-Read more here: https://www.php.net/manual/en/curl.configuration.php
+## Configuration
 
-## WSL - Logname: No Login Name
-In WSL, you may be warned:
+Config files are stored in `~/.central-command/con/`
 
-    logname: no login name
+## Tools Built With CC-Con
 
-As a workaround (via [therealkenc](https://github.com/microsoft/WSL/issues/888#issuecomment-393846024)), run:
+- [CC-SSH](https://github.com/gcannoninc/cc-ssh) - Shared SSH Config Manager
 
-    sudo touch /var/run/utmp
-    sudo login -f yourusername
+## Troubleshooting
 
-After this, you may need to remove config files and/or re-install to be sure files are owned by the right user(s), and that correct paths are used.
+### Permission Error - Failed to write to config file
+
+Review permissions on the config file (path in error message).
+
+If the config file is owned by root:
+
+```bash
+sudo chown $USER:$USER ~/.central-command/con/config.hjson
+sudo chmod 644 ~/.central-command/con/config.hjson
+```
+
+### Windows - SSL Errors
+
+Download the latest CA bundle and configure PHP.ini:
+- https://curl.haxx.se/docs/caextract.html
+- https://www.php.net/manual/en/curl.configuration.php
+
+### WSL - Logname Error
+
+If you see `logname: no login name`:
+
+```bash
+sudo touch /var/run/utmp
+sudo login -f yourusername
+```
+
+Then remove config files and reinstall if needed.
+
+## License
+
+MIT

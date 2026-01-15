@@ -5,7 +5,7 @@
         xmlns="https://www.phpdoc.org"
         xsi:noNamespaceSchemaLocation="https://github.com/phpDocumentor/phpDocumentor/blob/master/data/xsd/phpdoc.xsd"
 >
-    <title>PCon - PHP Console</title>
+    <title>CC-Con - Central Command Console</title>
     <paths>
         <output>docs</output>
         <cache>docs/.cache</cache>

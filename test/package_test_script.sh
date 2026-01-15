@@ -10,7 +10,7 @@ clear
 "$DIR/cleanup.sh" x --no-pause
 "$DIR/usage_create.sh" x --no-pause
 clear
-"$PCON" package "$TEST_SCRIPT"
+"$CC_CON" package "$TEST_SCRIPT"
 cp "$TEST_SCRIPT_PACKAGED" "$TEST_SCRIPT_DIST"
 
 echopackagenote
